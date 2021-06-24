@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './category_item.dart';
-import './dummy_data.dart';
+import '../widget/category_item.dart';
+import '../dummy_data.dart';
 
 class CategorieScreen extends StatelessWidget {
   const CategorieScreen({Key? key}) : super(key: key);
