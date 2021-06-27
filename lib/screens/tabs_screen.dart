@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
+import '../models/meal.dart';
 import '../widget/main_drawer.dart';
 
 import '../screens/favourite_screen.dart';
 import './categories_screen.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
+  final List<Meal> favMeals;
+
+  TabsScreen(this.favMeals);
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, dynamic>> _pages = [
-    {
-      'page': CategorieScreen(),
-      'title': 'Categories',
-    },
-    {
-      'title': 'Favourites',
-      'page': FavouritesScreen(),
-    }
-  ];
+  late List<Map<String, dynamic>> _pages;
 
   int _selectedPageIndex = 0;
+  @override
+  void initState() {
+    _pages = [
+      {
+        'page': CategorieScreen(),
+        'title': 'Categories',
+      },
+      {
+        'title': 'Favourites',
+        'page': FavouritesScreen(widget.favMeals),
+      }
+    ];
+    super.initState();
+  }
 
   //method to go on particluar BottomNavigationItem
   void _selectPage(int index) {
